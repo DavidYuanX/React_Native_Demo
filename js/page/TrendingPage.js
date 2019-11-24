@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, Button} from 'react-native';
+import NavigationUtil from '../naviartor/NavigationUtil';
 
 export default class TrendingPage extends Component {
     render() {
@@ -17,6 +18,10 @@ export default class TrendingPage extends Component {
                             },
                         },
                     )}
+                />
+                <Button
+                    title={'详情页'}
+                    onPress={() => NavigationUtil.goPage({},'DetaiPage')}
                 />
             </View>
         );
