@@ -7,6 +7,8 @@
  */
 
 import React from 'react';
+// import {NativeModules} from 'react-native'
+// NativeModules.HelloWorld.greeting("Bonnie")
 import {
   SafeAreaView,
   StyleSheet,

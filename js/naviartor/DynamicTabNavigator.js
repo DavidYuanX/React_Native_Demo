@@ -4,7 +4,7 @@ import {createBottomTabNavigator, BottomTabBar} from 'react-navigation-tabs';
 // import {connect} from 'react-redux';
 import PopularPage from '../page/PopularPage';
 import TrendingPage from '../page/TrendingPage';
-import FavoritePage from '../page/FavoritePage';
+import FavoritePage from '../page/VideoPlayScreen';
 import MyPage from '../page/MyPage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -42,7 +42,7 @@ const TABS = {
     FavoritePage: {
         screen: FavoritePage,
         navigationOptions: {
-            tabBarLabel: '收藏',
+            tabBarLabel: '视频',
             tabBarIcon: ({tintColor, focused}) => (
                 <MaterialIcons
                     name={'favorite'}
@@ -53,7 +53,7 @@ const TABS = {
         },
     },
     MyPage: {
-        screen: FavoritePage,
+        screen: MyPage,
         navigationOptions: {
             tabBarLabel: '我的',
             tabBarIcon: ({tintColor, focused}) => (
@@ -107,7 +107,6 @@ class TabBarComponent extends Component {
                 this.theme = theme;
             }
         }
-        debugger
         return <BottomTabBar
             {...this.props}
             activeTintColor={this.theme.tintColor || this.props.activeTintColor}
