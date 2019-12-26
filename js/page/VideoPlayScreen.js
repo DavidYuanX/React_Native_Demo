@@ -19,14 +19,15 @@ function formatTime(second) {
 }
 
 export default class VideoPlayScreen extends Component {
-  
+
   static navigationOptions = {
     headerTitle: '测试视频播放'
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
+      // http://tbm-auth.alicdn.com/e99361edd833010b/lbeWdqK7scprZicmUSZ/9rc4XlxmaxCVzyUkXmF_222092949005_hd_hq.mp4?auth_key=1576575099-0-0-a7d7686f22d4940aa246deda6c7fa059
       videoUrl: "http://124.129.157.208:8810/SD/2017qingdao/xiaoxueEnglish/grade3/b/1.mp4",
       videoCover: "http://124.129.157.208:8889/data/uploads/kecheng/2018/01/18/5a600b2c99836.png@0o_0l_220w.png",
       videoWidth: screenWidth,
@@ -40,7 +41,7 @@ export default class VideoPlayScreen extends Component {
       playFromBeginning: false, // 是否从头开始播放
     };
   }
-  
+
   render() {
     return (
       <View style={styles.container} onLayout={this._onLayout}>
@@ -140,24 +141,24 @@ export default class VideoPlayScreen extends Component {
       </View>
     )
   }
-  
+
   /// -------Video组件回调事件-------
-  
+
   _onLoadStart = () => {
     console.log('视频开始加载');
   };
-  
+
   _onBuffering = () => {
     console.log('视频缓冲中...')
   };
-  
+
   _onLoaded = (data) => {
     console.log('视频加载完成');
     this.setState({
       duration: data.duration,
     });
   };
-  
+
   _onProgressChanged = (data) => {
     console.log('视频进度更新');
     if (this.state.isPlaying) {
@@ -166,7 +167,7 @@ export default class VideoPlayScreen extends Component {
       })
     }
   };
-  
+
   _onPlayEnd = () => {
     console.log('视频播放结束');
     this.setState({
@@ -175,13 +176,13 @@ export default class VideoPlayScreen extends Component {
       playFromBeginning: true
     });
   };
-  
+
   _onPlayError = () => {
     console.log('视频播放失败');
   };
-  
+
   ///-------控件点击事件-------
-  
+
   /// 控制播放器工具栏的显示和隐藏
   hideControl() {
     if (this.state.showVideoControl) {
@@ -206,7 +207,7 @@ export default class VideoPlayScreen extends Component {
       )
     }
   }
-  
+
   /// 点击了播放器正中间的播放按钮
   onPressPlayButton() {
     let isPlay = !this.state.isPlaying;
@@ -221,12 +222,12 @@ export default class VideoPlayScreen extends Component {
       })
     }
   }
-  
+
   /// 点击了工具栏上的播放按钮
   onControlPlayPress() {
     this.onPressPlayButton();
   }
-  
+
   /// 点击了工具栏上的全屏按钮
   onControlShrinkPress() {
     if (this.state.isFullScreen) {
@@ -235,7 +236,7 @@ export default class VideoPlayScreen extends Component {
       Orientation.lockToLandscape();
     }
   }
-  
+
   /// 进度条值改变
   onSliderValueChanged(currentTime) {
     this.videoPlayer.seek(currentTime);
@@ -251,14 +252,14 @@ export default class VideoPlayScreen extends Component {
       })
     }
   }
-  
+
   /// 屏幕旋转时宽高会发生变化，可以在onLayout的方法中做处理，比监听屏幕旋转更加及时获取宽高变化
   _onLayout = (event) => {
     //获取根View的宽高
     let {width, height} = event.nativeEvent.layout;
     console.log('通过onLayout得到的宽度：' + width);
     console.log('通过onLayout得到的高度：' + height);
-    
+
     // 一般设备横屏下都是宽大于高，这里可以用这个来判断横竖屏
     let isLandscape = (width > height);
     if (isLandscape){
@@ -276,9 +277,9 @@ export default class VideoPlayScreen extends Component {
     }
     Orientation.unlockAllOrientations();
   };
-  
+
   /// -------外部调用事件方法-------
-  
+
   ///播放视频，提供给外部调用
   playVideo() {
     this.setState({
@@ -286,14 +287,14 @@ export default class VideoPlayScreen extends Component {
       showVideoCover: false
     })
   }
-  
+
   /// 暂停播放，提供给外部调用
   pauseVideo() {
     this.setState({
       isPlaying: false,
     })
   }
-  
+
   /// 切换视频并可以指定视频开始播放的时间，提供给外部调用
   switchVideo(videoURL, seekTime) {
     this.setState({
